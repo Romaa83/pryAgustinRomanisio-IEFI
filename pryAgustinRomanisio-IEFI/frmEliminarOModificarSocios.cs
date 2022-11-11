@@ -212,6 +212,12 @@ namespace pryAgustinRomanisio_IEFI
                     MessageBox.Show("Actualizado con exito!!");
                 }
                 Conexion.Close();
+
+                txtNombreApellido.Text = "";
+                txtDireccion.Text = "";
+                cboBarrio.SelectedIndex = -1;
+                cboActividad.SelectedIndex = -1;
+                txtSaldo.Text = "";
             }
             if (Bandera == true) //Si la bandera es verdadera, quiere decir que se toco el boton ELIMINAR
             {
@@ -223,6 +229,11 @@ namespace pryAgustinRomanisio_IEFI
                     MessageBox.Show("Datos ELIMINADOS con exito!!");
                 }
                 Conexion.Close();
+                txtNombreApellido.Text = "";
+                txtDireccion.Text = "";
+                cboBarrio.SelectedIndex = -1;
+                cboActividad.SelectedIndex = -1;
+                txtSaldo.Text = "";
             }
         }
 

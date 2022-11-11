@@ -52,6 +52,18 @@
     <Compile Include="frmAgregarSocios.Designer.cs">
       <DependentUpon>frmAgregarSocios.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmConsultaActividad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaActividad.Designer.cs">
+      <DependentUpon>frmConsultaActividad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConsultaPorBarrio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaPorBarrio.Designer.cs">
+      <DependentUpon>frmConsultaPorBarrio.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConsultarSocio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +98,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAgregarSocios.resx">
       <DependentUpon>frmAgregarSocios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultaActividad.resx">
+      <DependentUpon>frmConsultaActividad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultaPorBarrio.resx">
+      <DependentUpon>frmConsultaPorBarrio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsultarSocio.resx">
       <DependentUpon>frmConsultarSocio.cs</DependentUpon>

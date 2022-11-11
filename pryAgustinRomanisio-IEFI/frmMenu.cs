@@ -73,5 +73,17 @@ namespace pryAgustinRomanisio_IEFI
             frmListadoSaldos frmListadoSaldos = new frmListadoSaldos();
             frmListadoSaldos.ShowDialog();
         }
+
+        private void barrioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultaPorBarrio frmConsultaPorBarrio = new frmConsultaPorBarrio();
+            frmConsultaPorBarrio.ShowDialog();
+        }
+
+        private void actividadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultaActividad frmConsultaActividad = new frmConsultaActividad();
+            frmConsultaActividad.ShowDialog();
+        }
     }
 }

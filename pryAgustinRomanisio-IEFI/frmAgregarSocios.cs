@@ -23,7 +23,7 @@ namespace pryAgustinRomanisio_IEFI
 
         private void frmAgregarSocios_Load(object sender, EventArgs e)
         {
-            //Procedimiento para ver si se puede conectar a la base de datos
+            //Procedimiento para comprobar si conecta a la base de datos
             try 
             {
                 Conexion.Open();

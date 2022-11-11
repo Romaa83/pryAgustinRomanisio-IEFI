@@ -156,12 +156,14 @@
             this.actividadToolStripMenuItem.Name = "actividadToolStripMenuItem";
             this.actividadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.actividadToolStripMenuItem.Text = "Actividad";
+            this.actividadToolStripMenuItem.Click += new System.EventHandler(this.actividadToolStripMenuItem_Click);
             // 
             // barrioToolStripMenuItem
             // 
             this.barrioToolStripMenuItem.Name = "barrioToolStripMenuItem";
             this.barrioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.barrioToolStripMenuItem.Text = "Barrio";
+            this.barrioToolStripMenuItem.Click += new System.EventHandler(this.barrioToolStripMenuItem_Click);
             // 
             // frmMenu
             // 

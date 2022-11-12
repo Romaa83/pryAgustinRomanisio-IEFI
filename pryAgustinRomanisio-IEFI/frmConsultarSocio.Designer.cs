@@ -161,9 +161,9 @@
             this.lblCodigoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigoCliente.Location = new System.Drawing.Point(21, 37);
             this.lblCodigoCliente.Name = "lblCodigoCliente";
-            this.lblCodigoCliente.Size = new System.Drawing.Size(252, 25);
+            this.lblCodigoCliente.Size = new System.Drawing.Size(238, 25);
             this.lblCodigoCliente.TabIndex = 14;
-            this.lblCodigoCliente.Text = "Ingrese DNI de cliente:";
+            this.lblCodigoCliente.Text = "Ingrese DNI de socio:";
             // 
             // gpbDatosSocios
             // 

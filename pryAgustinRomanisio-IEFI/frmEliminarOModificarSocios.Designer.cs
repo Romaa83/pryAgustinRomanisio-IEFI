@@ -42,8 +42,8 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.lblIngresaCodCliente = new System.Windows.Forms.Label();
             this.gpbDatos = new System.Windows.Forms.GroupBox();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtSaldo = new System.Windows.Forms.TextBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
             this.SSEstado = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -177,9 +177,9 @@
             this.lblIngresaCodCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIngresaCodCliente.Location = new System.Drawing.Point(45, 35);
             this.lblIngresaCodCliente.Name = "lblIngresaCodCliente";
-            this.lblIngresaCodCliente.Size = new System.Drawing.Size(252, 25);
+            this.lblIngresaCodCliente.Size = new System.Drawing.Size(238, 25);
             this.lblIngresaCodCliente.TabIndex = 19;
-            this.lblIngresaCodCliente.Text = "Ingrese DNI de cliente:";
+            this.lblIngresaCodCliente.Text = "Ingrese DNI de socio:";
             // 
             // gpbDatos
             // 
@@ -201,14 +201,6 @@
             this.gpbDatos.TabStop = false;
             this.gpbDatos.Text = "Datos";
             // 
-            // txtDNI
-            // 
-            this.txtDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNI.Location = new System.Drawing.Point(321, 32);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(180, 31);
-            this.txtDNI.TabIndex = 34;
-            // 
             // txtSaldo
             // 
             this.txtSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -216,6 +208,14 @@
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.Size = new System.Drawing.Size(180, 31);
             this.txtSaldo.TabIndex = 36;
+            // 
+            // txtDNI
+            // 
+            this.txtDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDNI.Location = new System.Drawing.Point(321, 32);
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(180, 31);
+            this.txtDNI.TabIndex = 34;
             // 
             // SSEstado
             // 

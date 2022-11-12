@@ -44,14 +44,16 @@
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnGenerarInforme = new System.Windows.Forms.Button();
             this.gpbInformacion = new System.Windows.Forms.GroupBox();
-            this.lblMayorSaldo = new System.Windows.Forms.Label();
-            this.lblSaldoMenor = new System.Windows.Forms.Label();
-            this.lblPromedio = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.txtSaldoMayor = new System.Windows.Forms.TextBox();
-            this.txtSaldoMenor = new System.Windows.Forms.TextBox();
-            this.txtPromedio = new System.Windows.Forms.TextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtPromedio = new System.Windows.Forms.TextBox();
+            this.txtSaldoMenor = new System.Windows.Forms.TextBox();
+            this.txtSaldoMayor = new System.Windows.Forms.TextBox();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblPromedio = new System.Windows.Forms.Label();
+            this.lblSaldoMenor = new System.Windows.Forms.Label();
+            this.lblMayorSaldo = new System.Windows.Forms.Label();
+            this.prtVentana = new System.Windows.Forms.PrintDialog();
+            this.prtDocumento = new System.Drawing.Printing.PrintDocument();
             this.SSEstado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarActividad)).BeginInit();
             this.gpbInformacion.SuspendLayout();
@@ -170,6 +172,7 @@
             this.btnImprimir.TabIndex = 44;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnGenerarInforme
             // 
@@ -200,35 +203,33 @@
             this.gpbInformacion.TabStop = false;
             this.gpbInformacion.Text = "Información";
             // 
-            // lblMayorSaldo
+            // txtTotal
             // 
-            this.lblMayorSaldo.AutoSize = true;
-            this.lblMayorSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMayorSaldo.Location = new System.Drawing.Point(8, 50);
-            this.lblMayorSaldo.Name = "lblMayorSaldo";
-            this.lblMayorSaldo.Size = new System.Drawing.Size(150, 25);
-            this.lblMayorSaldo.TabIndex = 47;
-            this.lblMayorSaldo.Text = "Saldo mayor:";
+            this.txtTotal.Location = new System.Drawing.Point(537, 124);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(164, 31);
+            this.txtTotal.TabIndex = 54;
             // 
-            // lblSaldoMenor
+            // txtPromedio
             // 
-            this.lblSaldoMenor.AutoSize = true;
-            this.lblSaldoMenor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaldoMenor.Location = new System.Drawing.Point(380, 50);
-            this.lblSaldoMenor.Name = "lblSaldoMenor";
-            this.lblSaldoMenor.Size = new System.Drawing.Size(151, 25);
-            this.lblSaldoMenor.TabIndex = 48;
-            this.lblSaldoMenor.Text = "Saldo menor:";
+            this.txtPromedio.Location = new System.Drawing.Point(164, 124);
+            this.txtPromedio.Name = "txtPromedio";
+            this.txtPromedio.Size = new System.Drawing.Size(164, 31);
+            this.txtPromedio.TabIndex = 53;
             // 
-            // lblPromedio
+            // txtSaldoMenor
             // 
-            this.lblPromedio.AutoSize = true;
-            this.lblPromedio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPromedio.Location = new System.Drawing.Point(12, 127);
-            this.lblPromedio.Name = "lblPromedio";
-            this.lblPromedio.Size = new System.Drawing.Size(118, 25);
-            this.lblPromedio.TabIndex = 49;
-            this.lblPromedio.Text = "Promedio:";
+            this.txtSaldoMenor.Location = new System.Drawing.Point(537, 47);
+            this.txtSaldoMenor.Name = "txtSaldoMenor";
+            this.txtSaldoMenor.Size = new System.Drawing.Size(164, 31);
+            this.txtSaldoMenor.TabIndex = 52;
+            // 
+            // txtSaldoMayor
+            // 
+            this.txtSaldoMayor.Location = new System.Drawing.Point(164, 47);
+            this.txtSaldoMayor.Name = "txtSaldoMayor";
+            this.txtSaldoMayor.Size = new System.Drawing.Size(164, 31);
+            this.txtSaldoMayor.TabIndex = 51;
             // 
             // lblTotal
             // 
@@ -240,33 +241,43 @@
             this.lblTotal.TabIndex = 50;
             this.lblTotal.Text = "Total:";
             // 
-            // txtSaldoMayor
+            // lblPromedio
             // 
-            this.txtSaldoMayor.Location = new System.Drawing.Point(164, 47);
-            this.txtSaldoMayor.Name = "txtSaldoMayor";
-            this.txtSaldoMayor.Size = new System.Drawing.Size(164, 31);
-            this.txtSaldoMayor.TabIndex = 51;
+            this.lblPromedio.AutoSize = true;
+            this.lblPromedio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPromedio.Location = new System.Drawing.Point(12, 127);
+            this.lblPromedio.Name = "lblPromedio";
+            this.lblPromedio.Size = new System.Drawing.Size(118, 25);
+            this.lblPromedio.TabIndex = 49;
+            this.lblPromedio.Text = "Promedio:";
             // 
-            // txtSaldoMenor
+            // lblSaldoMenor
             // 
-            this.txtSaldoMenor.Location = new System.Drawing.Point(537, 47);
-            this.txtSaldoMenor.Name = "txtSaldoMenor";
-            this.txtSaldoMenor.Size = new System.Drawing.Size(164, 31);
-            this.txtSaldoMenor.TabIndex = 52;
+            this.lblSaldoMenor.AutoSize = true;
+            this.lblSaldoMenor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaldoMenor.Location = new System.Drawing.Point(380, 50);
+            this.lblSaldoMenor.Name = "lblSaldoMenor";
+            this.lblSaldoMenor.Size = new System.Drawing.Size(151, 25);
+            this.lblSaldoMenor.TabIndex = 48;
+            this.lblSaldoMenor.Text = "Saldo menor:";
             // 
-            // txtPromedio
+            // lblMayorSaldo
             // 
-            this.txtPromedio.Location = new System.Drawing.Point(164, 124);
-            this.txtPromedio.Name = "txtPromedio";
-            this.txtPromedio.Size = new System.Drawing.Size(164, 31);
-            this.txtPromedio.TabIndex = 53;
+            this.lblMayorSaldo.AutoSize = true;
+            this.lblMayorSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMayorSaldo.Location = new System.Drawing.Point(8, 50);
+            this.lblMayorSaldo.Name = "lblMayorSaldo";
+            this.lblMayorSaldo.Size = new System.Drawing.Size(150, 25);
+            this.lblMayorSaldo.TabIndex = 47;
+            this.lblMayorSaldo.Text = "Saldo mayor:";
             // 
-            // txtTotal
+            // prtVentana
             // 
-            this.txtTotal.Location = new System.Drawing.Point(537, 124);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(164, 31);
-            this.txtTotal.TabIndex = 54;
+            this.prtVentana.UseEXDialog = true;
+            // 
+            // prtDocumento
+            // 
+            this.prtDocumento.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.prtDocumento_PrintPage);
             // 
             // frmConsultaActividad
             // 
@@ -321,5 +332,7 @@
         private System.Windows.Forms.TextBox txtSaldoMenor;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.TextBox txtPromedio;
+        private System.Windows.Forms.PrintDialog prtVentana;
+        private System.Drawing.Printing.PrintDocument prtDocumento;
     }
 }

@@ -207,5 +207,50 @@ namespace pryAgustinRomanisio_IEFI
             Conexion.Close();
             swListado.Close();
         }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            prtVentana.ShowDialog();
+            prtDocumento.PrinterSettings = prtVentana.PrinterSettings; //Le asignamos la impresora que selecciona la ventana
+            prtDocumento.Print();
+        }
+
+        private void prtDocumento_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Font Letra = new Font("Arial", 9);
+            Font Titulo = new Font("Arial", 15);
+            int linea = 200;
+            int f = 0;
+
+            //Se escribe el titlo
+            e.Graphics.DrawString("Listado de socios de: " + cboActividad.Text + "", Titulo, Brushes.Black, 100, 50);
+            //Se escriben el nombre de las columnas
+            e.Graphics.DrawString("DNI", Letra,Brushes.Black, 100, 150);
+            e.Graphics.DrawString("Nombre y Apellido", Letra, Brushes.Black, 150, 150);
+            e.Graphics.DrawString("Direccion", Letra, Brushes.Black, 300, 150);
+            e.Graphics.DrawString("Barrio", Letra, Brushes.Black, 470, 150);
+            e.Graphics.DrawString("Actividad", Letra, Brushes.Black, 600, 150);
+            e.Graphics.DrawString("Saldo", Letra, Brushes.Black, 700, 150);
+
+            //Se escriben los datos de las filas
+            while (f < dgvListarActividad.Rows.Count-1)
+            {
+                e.Graphics.DrawString(dgvListarActividad.Rows[f].Cells[0].Value.ToString(), Letra, Brushes.Black, 100, linea);
+                e.Graphics.DrawString(dgvListarActividad.Rows[f].Cells[1].Value.ToString(), Letra, Brushes.Black, 150, linea);
+                e.Graphics.DrawString(dgvListarActividad.Rows[f].Cells[2].Value.ToString(), Letra, Brushes.Black, 300, linea);
+                e.Graphics.DrawString(dgvListarActividad.Rows[f].Cells[3].Value.ToString(), Letra, Brushes.Black, 470, linea);
+                e.Graphics.DrawString(dgvListarActividad.Rows[f].Cells[4].Value.ToString(), Letra, Brushes.Black, 600, linea);
+                e.Graphics.DrawString(dgvListarActividad.Rows[f].Cells[5].Value.ToString(), Letra, Brushes.Black, 700, linea);
+                linea = linea + 15;
+                f++;
+            }
+            //Se escribe la información
+            linea = linea + 20;
+            e.Graphics.DrawString("Saldo Mayor: " + txtSaldoMayor.Text + "", Letra, Brushes.Black, 100, linea);
+            e.Graphics.DrawString("Saldo Menor: " + txtSaldoMenor.Text + "", Letra, Brushes.Black, 250, linea);
+            e.Graphics.DrawString("Promedio: " + txtPromedio.Text + "", Letra, Brushes.Black, 400, linea);
+            e.Graphics.DrawString("Total: " + txtTotal.Text + "", Letra, Brushes.Black, 550, linea);
+            MessageBox.Show("Lista impresa con exito!");
+        }
     }
 }

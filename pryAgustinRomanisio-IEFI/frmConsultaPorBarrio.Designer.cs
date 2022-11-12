@@ -52,6 +52,8 @@
             this.lblMayorSaldo = new System.Windows.Forms.Label();
             this.btnGenerarInforme = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.prtVentana = new System.Windows.Forms.PrintDialog();
+            this.prtDocumento = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarBarrio)).BeginInit();
             this.SSEstado.SuspendLayout();
             this.gpbInformacion.SuspendLayout();
@@ -267,6 +269,15 @@
             this.btnImprimir.TabIndex = 47;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // prtVentana
+            // 
+            this.prtVentana.UseEXDialog = true;
+            // 
+            // prtDocumento
+            // 
+            this.prtDocumento.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.prtDocumento_PrintPage);
             // 
             // frmConsultaPorBarrio
             // 
@@ -321,5 +332,7 @@
         private System.Windows.Forms.Label lblMayorSaldo;
         private System.Windows.Forms.Button btnGenerarInforme;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.PrintDialog prtVentana;
+        private System.Drawing.Printing.PrintDocument prtDocumento;
     }
 }

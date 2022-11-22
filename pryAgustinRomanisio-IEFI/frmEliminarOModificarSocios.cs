@@ -27,6 +27,8 @@ namespace pryAgustinRomanisio_IEFI
         private void frmEliminarOModificarSocios_Load(object sender, EventArgs e)
         {
             btnGuardar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnModificar.Enabled = false;
             txtNombreApellido.Enabled = false;
             txtDireccion.Enabled = false;
             txtSaldo.Enabled = false;
@@ -129,6 +131,8 @@ namespace pryAgustinRomanisio_IEFI
                             }
                             ConexionBD2.Close();
                             txtSaldo.Text = Convert.ToString(lector.GetDecimal(5));
+                            btnEliminar.Enabled = true;
+                            btnModificar.Enabled = true;
                         }
 
                     }
@@ -162,57 +166,100 @@ namespace pryAgustinRomanisio_IEFI
         {
             int codBarrio = 0;
             int codActividad = 0;
-            if (Bandera == false) //Si la bandera es falsa, quiere decir que se toco el boton MODIFICAR
+            if (txtNombreApellido.Text != "" && txtDireccion.Text != "" && txtSaldo.Text != "")
             {
-                //Se abre una conexion para tomar la tabla Barrio
-                ConexionBD2.Open();
-                ComandoBD2.Connection = ConexionBD2;
-                ComandoBD2.CommandType = CommandType.TableDirect;
-                ComandoBD2.CommandText = "Barrio";
-                OleDbDataReader lector = ComandoBD2.ExecuteReader();
+                if (Bandera == false) //Si la bandera es falsa, quiere decir que se toco el boton MODIFICAR
+                {
+                    //Se abre una conexion para tomar la tabla Barrio
+                    ConexionBD2.Open();
+                    ComandoBD2.Connection = ConexionBD2;
+                    ComandoBD2.CommandType = CommandType.TableDirect;
+                    ComandoBD2.CommandText = "Barrio";
+                    OleDbDataReader lector = ComandoBD2.ExecuteReader();
 
-                while (lector.Read() && cboBarrio.Text != lector.GetString(1))
-                {
-                }
-                if (cboBarrio.Text == lector.GetString(1))
-                {
-                    codBarrio = lector.GetInt32(0);
-                }
-                ConexionBD2.Close();
+                    while (lector.Read() && cboBarrio.Text != lector.GetString(1))
+                    {
+                    }
+                    if (cboBarrio.Text == lector.GetString(1))
+                    {
+                        codBarrio = lector.GetInt32(0);
+                    }
+                    ConexionBD2.Close();
 
-                //Se abre de nuevo para tomar la tabla actividad
-                ConexionBD2.Open();
-                ComandoBD2.Connection = ConexionBD2;
-                ComandoBD2.CommandType = CommandType.TableDirect;
-                ComandoBD2.CommandText = "Actividad";
-                OleDbDataReader lector2 = ComandoBD2.ExecuteReader();
-                while (lector2.Read() && cboActividad.Text != lector2.GetString(1))
-                {
-                }
-                if (cboActividad.Text == lector2.GetString(1))
-                {
+                    //Se abre de nuevo para tomar la tabla actividad
+                    ConexionBD2.Open();
+                    ComandoBD2.Connection = ConexionBD2;
+                    ComandoBD2.CommandType = CommandType.TableDirect;
+                    ComandoBD2.CommandText = "Actividad";
+                    OleDbDataReader lector2 = ComandoBD2.ExecuteReader();
+                    while (lector2.Read() && cboActividad.Text != lector2.GetString(1))
+                    {
+                    }
+                    if (cboActividad.Text == lector2.GetString(1))
+                    {
+                        codActividad = lector2.GetInt32(0);
+                    }
                     codActividad = lector2.GetInt32(0);
-                }
-                codActividad = lector2.GetInt32(0);
-                ConexionBD2.Close(); 
+                    ConexionBD2.Close();
 
-                //Se abre una nueva conexion para actualizar los datos 
-                Conexion.Open();
-                using (System.Data.OleDb.OleDbCommand comandoModificar = new System.Data.OleDb.OleDbCommand(
-                        "UPDATE Socio SET Nombre_Apellido=@NOMBRE, DIRECCION=@DIRECCION," +
-                        "Codigo_Barrio=@BARRIO,Codigo_Actividad=@ACTIVIDAD, Saldo=@SALDO WHERE Dni_Socio=@DNI", Conexion)) //creo comando, sentencia sql, y lo conecto con la base
+                    //Se abre una nueva conexion para actualizar los datos 
+                    Conexion.Open();
+                    using (System.Data.OleDb.OleDbCommand comandoModificar = new System.Data.OleDb.OleDbCommand(
+                            "UPDATE Socio SET Nombre_Apellido=@NOMBRE, DIRECCION=@DIRECCION," +
+                            "Codigo_Barrio=@BARRIO,Codigo_Actividad=@ACTIVIDAD, Saldo=@SALDO WHERE Dni_Socio=@DNI", Conexion)) //creo comando, sentencia sql, y lo conecto con la base
+                    {
+                        comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@NOMBRE", txtNombreApellido.Text));
+                        comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DIRECCION", txtDireccion.Text));
+                        comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@BARRIO", codBarrio));
+                        comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@ACTIVIDAD", codActividad));
+                        comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@SALDO", txtSaldo.Text));
+                        comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DNI", txtDNI.Text));
+                        comandoModificar.ExecuteNonQuery();
+                        MessageBox.Show("Actualizado con exito!!");
+                    }
+                    Conexion.Close();
+
+                    txtNombreApellido.Text = "";
+                    txtDireccion.Text = "";
+                    cboBarrio.SelectedIndex = -1;
+                    cboActividad.SelectedIndex = -1;
+                    txtSaldo.Text = "";
+                    btnGuardar.Enabled = false;
+                    txtNombreApellido.Enabled = false;
+                    txtDireccion.Enabled = false;
+                    txtSaldo.Enabled = false;
+                    cboBarrio.Enabled = false;
+                    cboActividad.Enabled = false;
+                    btnEliminar.Enabled = false;
+                    btnModificar.Enabled = false;
+
+                }
+                if (Bandera == true) //Si la bandera es verdadera, quiere decir que se toco el boton ELIMINAR
                 {
-                    comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@NOMBRE", txtNombreApellido.Text));
-                    comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DIRECCION", txtDireccion.Text));
-                    comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@BARRIO", codBarrio));
-                    comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@ACTIVIDAD", codActividad));
-                    comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@SALDO", txtSaldo.Text));
-                    comandoModificar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DNI", txtDNI.Text));
-                    comandoModificar.ExecuteNonQuery();
-                    MessageBox.Show("Actualizado con exito!!");
+                    Conexion.Open();
+                    using (System.Data.OleDb.OleDbCommand comandoEliminar = new System.Data.OleDb.OleDbCommand("DELETE * FROM Socio WHERE Dni_Socio=" +
+                        txtDNI.Text + "", Conexion))
+                    {
+                        comandoEliminar.ExecuteNonQuery();
+                        MessageBox.Show("Datos ELIMINADOS con exito!!");
+                    }
+                    Conexion.Close();
+                    txtNombreApellido.Text = "";
+                    txtDireccion.Text = "";
+                    cboBarrio.SelectedIndex = -1;
+                    cboActividad.SelectedIndex = -1;
+                    txtSaldo.Text = "";
+                    btnGuardar.Enabled = false;
+                    txtNombreApellido.Enabled = false;
+                    txtDireccion.Enabled = false;
+                    txtSaldo.Enabled = false;
+                    cboBarrio.Enabled = false;
+                    cboActividad.Enabled = false;
                 }
-                Conexion.Close();
-
+            }
+            else
+            {
+                MessageBox.Show("Ingrese TODOS los valores");
                 txtNombreApellido.Text = "";
                 txtDireccion.Text = "";
                 cboBarrio.SelectedIndex = -1;
@@ -224,8 +271,10 @@ namespace pryAgustinRomanisio_IEFI
                 txtSaldo.Enabled = false;
                 cboBarrio.Enabled = false;
                 cboActividad.Enabled = false;
-
             }
+            
+
+            
             if (Bandera == true) //Si la bandera es verdadera, quiere decir que se toco el boton ELIMINAR
             {
                 Conexion.Open();

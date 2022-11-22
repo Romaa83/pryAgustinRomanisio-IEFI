@@ -218,6 +218,13 @@ namespace pryAgustinRomanisio_IEFI
                 cboBarrio.SelectedIndex = -1;
                 cboActividad.SelectedIndex = -1;
                 txtSaldo.Text = "";
+                btnGuardar.Enabled = false;
+                txtNombreApellido.Enabled = false;
+                txtDireccion.Enabled = false;
+                txtSaldo.Enabled = false;
+                cboBarrio.Enabled = false;
+                cboActividad.Enabled = false;
+
             }
             if (Bandera == true) //Si la bandera es verdadera, quiere decir que se toco el boton ELIMINAR
             {
@@ -234,6 +241,12 @@ namespace pryAgustinRomanisio_IEFI
                 cboBarrio.SelectedIndex = -1;
                 cboActividad.SelectedIndex = -1;
                 txtSaldo.Text = "";
+                btnGuardar.Enabled = false;
+                txtNombreApellido.Enabled = false;
+                txtDireccion.Enabled = false;
+                txtSaldo.Enabled = false;
+                cboBarrio.Enabled = false;
+                cboActividad.Enabled = false;
             }
         }
 

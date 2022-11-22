@@ -32,6 +32,8 @@ namespace pryAgustinRomanisio_IEFI
             txtSaldoMayor.Enabled = false;
             txtSaldoMenor.Enabled = false;
             txtTotal.Enabled = false;
+            btnGenerarInforme.Enabled = false;
+            btnImprimir.Enabled = false;
             //Procedimiento para ver si se conecta a la base de datos
             try
             {
@@ -72,6 +74,8 @@ namespace pryAgustinRomanisio_IEFI
             dgvListarBarrio.Rows.Clear();
             if (cboBarrio.SelectedIndex != -1) 
             {
+                btnGenerarInforme.Enabled = true;
+                btnImprimir.Enabled = true;
                 //Se abre conexion para obtener barrio
                 Conexion.Open();
                 ComandoBD.Connection = Conexion;

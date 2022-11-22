@@ -72,61 +72,69 @@ namespace pryAgustinRomanisio_IEFI
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            int codBarrio = 0;
-            int codActividad = 0;
-
-            Conexion.Open();
-            ComandoBD.Connection = Conexion;
-            ComandoBD.CommandType = CommandType.TableDirect;
-            ComandoBD.CommandText = "Barrio";
-
-            OleDbDataReader lectorBarrio = ComandoBD.ExecuteReader(); 
-
-            while (lectorBarrio.Read()) //Cambio el nombre del barrio por el numero que corresponde
+            if (txtDniSocio.Text != "" && txtNombreApellido.Text != "" && txtDireccion.Text != "" && cboBarrio.SelectedIndex != -1 && cboActividad.SelectedIndex != -1 && txtSaldo.Text != "")
             {
-                if (cboBarrio.Text == lectorBarrio.GetString(1))
+                int codBarrio = 0;
+                int codActividad = 0;
+
+                Conexion.Open();
+                ComandoBD.Connection = Conexion;
+                ComandoBD.CommandType = CommandType.TableDirect;
+                ComandoBD.CommandText = "Barrio";
+
+                OleDbDataReader lectorBarrio = ComandoBD.ExecuteReader();
+
+                while (lectorBarrio.Read()) //Cambio el nombre del barrio por el numero que corresponde
                 {
-                    codBarrio = lectorBarrio.GetInt32(0); //y lo agrego en una variable
+                    if (cboBarrio.Text == lectorBarrio.GetString(1))
+                    {
+                        codBarrio = lectorBarrio.GetInt32(0); //y lo agrego en una variable
+                    }
                 }
-            }
-            Conexion.Close();
-
-            Conexion.Open();
-            ComandoBD.Connection = Conexion;
-            ComandoBD.CommandType = CommandType.TableDirect;
-            ComandoBD.CommandText = "Actividad";
-            OleDbDataReader lectorActividad = ComandoBD.ExecuteReader();
-
-            while (lectorActividad.Read()) //Cambio el nombre de la actividad por el numero que corresponde
-            {
-                if (cboActividad.Text == lectorActividad.GetString(1))
-                {
-                    codActividad = lectorActividad.GetInt32(0); //y lo agrego en una variable
-                }
-            }
-            Conexion.Close();
-
-            Conexion.Open();
-            using (System.Data.OleDb.OleDbCommand ComandoAgregar = new System.Data.OleDb.OleDbCommand(
-                        "INSERT INTO Socio (Dni_Socio, Nombre_Apellido, Direccion, Codigo_Barrio, Codigo_Actividad, Saldo) " +
-                        "VALUES (@DNISOCIO, @NOMBREAPELLIDO, @DIRECCION, @BARRIO, @ACTIVIDAD, @SALDO)", Conexion)) //creo comando, sentencia sql
-            {
-                ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DNISOCIO", txtDniSocio.Text));
-                ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@NOMBREAPELLIDO", txtNombreApellido.Text));
-                ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DIRECCION", txtDireccion.Text));
-                ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@BARRIO", codBarrio));
-                ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@ACTIVIDAD", codActividad));
-                ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@SALDO", txtSaldo.Text));
-                ComandoAgregar.ExecuteNonQuery();
                 Conexion.Close();
+
+                Conexion.Open();
+                ComandoBD.Connection = Conexion;
+                ComandoBD.CommandType = CommandType.TableDirect;
+                ComandoBD.CommandText = "Actividad";
+                OleDbDataReader lectorActividad = ComandoBD.ExecuteReader();
+
+                while (lectorActividad.Read()) //Cambio el nombre de la actividad por el numero que corresponde
+                {
+                    if (cboActividad.Text == lectorActividad.GetString(1))
+                    {
+                        codActividad = lectorActividad.GetInt32(0); //y lo agrego en una variable
+                    }
+                }
+                Conexion.Close();
+
+                Conexion.Open();
+                using (System.Data.OleDb.OleDbCommand ComandoAgregar = new System.Data.OleDb.OleDbCommand(
+                            "INSERT INTO Socio (Dni_Socio, Nombre_Apellido, Direccion, Codigo_Barrio, Codigo_Actividad, Saldo) " +
+                            "VALUES (@DNISOCIO, @NOMBREAPELLIDO, @DIRECCION, @BARRIO, @ACTIVIDAD, @SALDO)", Conexion)) //creo comando, sentencia sql
+                {
+                    ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DNISOCIO", txtDniSocio.Text));
+                    ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@NOMBREAPELLIDO", txtNombreApellido.Text));
+                    ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@DIRECCION", txtDireccion.Text));
+                    ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@BARRIO", codBarrio));
+                    ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@ACTIVIDAD", codActividad));
+                    ComandoAgregar.Parameters.Add(new System.Data.OleDb.OleDbParameter("@SALDO", txtSaldo.Text));
+                    ComandoAgregar.ExecuteNonQuery();
+                    Conexion.Close();
+                }
+                txtDniSocio.Text = " ";
+                txtNombreApellido.Text = " ";
+                txtDireccion.Text = " ";
+                cboBarrio.SelectedIndex = -1;
+                cboActividad.SelectedIndex = -1;
+                txtSaldo.Text = "";
+                MessageBox.Show("Datos agregados con exito");
             }
-            txtDniSocio.Text = " ";
-            txtNombreApellido.Text = " ";
-            txtDireccion.Text = " ";
-            cboBarrio.SelectedIndex = -1;
-            cboActividad.SelectedIndex = -1;
-            txtSaldo.Text = "";
-            MessageBox.Show("Datos agregados con exito");
+            else
+            {
+                MessageBox.Show("Ingrese todos los datos necesarios");
+            }
+         
         }
 
         private void txtDniSocio_KeyPress(object sender, KeyPressEventArgs e)

@@ -72,11 +72,11 @@ namespace pryAgustinRomanisio_IEFI
             Decimal Total = 0;
             int contador = 0;
 
-            btnGenerarInforme.Enabled = true;
-            btnImprimir.Enabled = true;
             dgvListarActividad.Rows.Clear();
             if (cboActividad.SelectedIndex != -1)
             {
+                btnGenerarInforme.Enabled = true;
+                btnImprimir.Enabled = true;
                 //Se abre conexion para obtener barrio
                 Conexion.Open();
                 ComandoBD.Connection = Conexion;

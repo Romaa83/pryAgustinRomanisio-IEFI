@@ -272,31 +272,7 @@ namespace pryAgustinRomanisio_IEFI
                 cboBarrio.Enabled = false;
                 cboActividad.Enabled = false;
             }
-            
 
-            
-            if (Bandera == true) //Si la bandera es verdadera, quiere decir que se toco el boton ELIMINAR
-            {
-                Conexion.Open();
-                using (System.Data.OleDb.OleDbCommand comandoEliminar = new System.Data.OleDb.OleDbCommand("DELETE * FROM Socio WHERE Dni_Socio=" +
-                    txtDNI.Text + "", Conexion))
-                {
-                    comandoEliminar.ExecuteNonQuery();
-                    MessageBox.Show("Datos ELIMINADOS con exito!!");
-                }
-                Conexion.Close();
-                txtNombreApellido.Text = "";
-                txtDireccion.Text = "";
-                cboBarrio.SelectedIndex = -1;
-                cboActividad.SelectedIndex = -1;
-                txtSaldo.Text = "";
-                btnGuardar.Enabled = false;
-                txtNombreApellido.Enabled = false;
-                txtDireccion.Enabled = false;
-                txtSaldo.Enabled = false;
-                cboBarrio.Enabled = false;
-                cboActividad.Enabled = false;
-            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
